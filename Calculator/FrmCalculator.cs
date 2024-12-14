@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -15,10 +16,9 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void Btn_Click(object sender, EventArgs e)
+        private void Execute(string key)
         {
-            Button button = (Button)sender;
-            switch (button.Text)
+            switch (key)
             {
                 case "0":
                 case "1":
@@ -32,14 +32,15 @@ namespace Calculator
                 case "9":
                     if (isOperationPerformed)
                     {
-                        currentInput = button.Text;
+                        currentInput = key;
                         isOperationPerformed = false;
                     }
                     else
                     {
-                        currentInput += button.Text;
+                        currentInput += key;
                     }
                     break;
+
                 case "+":
                 case "-":
                 case "*":
@@ -54,23 +55,21 @@ namespace Calculator
                         {
                             result = double.Parse(currentInput);
                         }
-                        operation = button.Text;
+                        operation = key;
                         isOperationPerformed = true;
-                        LblOperation.Text = operation;
                     }
                     break;
+
                 case "=":
                     if (currentInput != "" && operation != "")
                     {
                         PerformCalculation();
                         currentInput = result.ToString();
                         operation = "";
-                        LblOperation.Text = "";
-
                         isOperationPerformed = true;
-
                     }
                     break;
+
                 case ".":
                     if (!currentInput.Contains("."))
                     {
@@ -80,10 +79,11 @@ namespace Calculator
                         }
                         else
                         {
-                            currentInput += button.Text;
+                            currentInput += key;
                         }
                     }
                     break;
+
                 case "+/-":
                     if (currentInput != "")
                     {
@@ -91,19 +91,20 @@ namespace Calculator
                         temp *= -1;
                         currentInput = temp.ToString();
                     }
-                    LblDisplayPrimary.Text = currentInput;
                     break;
+
                 case "C":
                     currentInput = "";
                     break;
+
                 case "CE":
                     currentInput = "";
                     result = 0;
                     operation = "";
-                    LblOperation.Text = "";
                     break;
             }
 
+            // Update the displays
             LblDisplayPrimary.Text = currentInput == "" ? "0" : currentInput;
             LblDisplaySecondary.Text = result.ToString();
         }
@@ -111,29 +112,52 @@ namespace Calculator
         private void PerformCalculation()
         {
             double inputNumber = double.Parse(currentInput);
-                switch (operation)
-                {
-                    case "+":
-                        result += inputNumber;
-                        break;
-                    case "-":
-                        result -= inputNumber;
-                        break;
-                    case "*":
-                        result *= inputNumber;
-                        break;
-                    case "/":
-                        if (inputNumber != 0)
-                            result /= inputNumber;
-                        else
-                            MessageBox.Show("Cannot divide by zero.");
-                        break;
-                    default:
-                        result = inputNumber;
-                        break;
-                }
-            
+
+            switch (operation)
+            {
+                case "+":
+                    result += inputNumber;
+                    break;
+                case "-":
+                    result -= inputNumber;
+                    break;
+                case "*":
+                    result *= inputNumber;
+                    break;
+                case "/":
+                    if (inputNumber != 0)
+                    {
+                        result /= inputNumber;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cannot divide by zero.");
+                    }
+                    break;
+            }
+
             currentInput = "";
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            Execute(button.Text);
+        }
+
+        private void FrmCalculator_Load(object sender, EventArgs e)
+        {
+            AllocConsole();
+        }
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
+        private void FrmCalculator_KeyDown(object sender, KeyEventArgs e)
+        {
+            string key = e.KeyCode.ToString().Remove(0, 1);
+            Execute(key);
         }
     }
 }
