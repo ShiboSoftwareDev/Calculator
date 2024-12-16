@@ -124,36 +124,47 @@ namespace Calculator
 
         private void FrmCalculator_KeyDown(object sender, KeyEventArgs e)
         {
-            string key = e.KeyCode.ToString();
+            string key = "";
 
-            if (key.Length == 1 && char.IsDigit(key[0]))
+            if (e.KeyCode >= Keys.D0 && e.KeyCode <= Keys.D9)
             {
-                Execute(key);
+                key = ((char)e.KeyCode).ToString();
+            }
+            else if (e.KeyCode >= Keys.NumPad0 && e.KeyCode <= Keys.NumPad9)
+            {
+                key = ((char)(e.KeyCode - Keys.NumPad0 + '0')).ToString();
             }
             else
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Add:
-                        Execute("+");
+                    case Keys.Oemplus:
+                        key = "+";
                         break;
-                    case Keys.Subtract:
-                        Execute("-");
+                    case Keys.OemMinus:
+                        key = "-";
                         break;
-                    case Keys.Multiply:
-                        Execute("*");
+                    case Keys.D8 when e.Shift:
+                        key = "*";
                         break;
-                    case Keys.Divide:
-                        Execute("/");
+                    case Keys.Oem2:
+                        key = "/";
                         break;
                     case Keys.Enter:
-                        Execute("=");
+                        key = "=";
                         break;
                     case Keys.Back:
-                        Execute("CE");
+                        key = "CE";
                         break;
                 }
             }
+
+            if (!string.IsNullOrEmpty(key))
+            {
+                Execute(key);
+            }
+
+            e.Handled = true;
         }
     }
 }
