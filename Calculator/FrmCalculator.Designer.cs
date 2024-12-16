@@ -55,11 +55,11 @@
             // LblDisplayPrimary
             // 
             this.LblDisplayPrimary.BackColor = System.Drawing.Color.Transparent;
-            this.LblDisplayPrimary.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDisplayPrimary.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.LblDisplayPrimary.ForeColor = System.Drawing.Color.Snow;
             this.LblDisplayPrimary.Location = new System.Drawing.Point(12, 43);
             this.LblDisplayPrimary.Name = "LblDisplayPrimary";
-            this.LblDisplayPrimary.Size = new System.Drawing.Size(429, 30);
+            this.LblDisplayPrimary.Size = new System.Drawing.Size(431, 30);
             this.LblDisplayPrimary.TabIndex = 0;
             this.LblDisplayPrimary.Text = "0";
             this.LblDisplayPrimary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -353,10 +353,10 @@
             // 
             this.LblDisplaySecondary.BackColor = System.Drawing.Color.Transparent;
             this.LblDisplaySecondary.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDisplaySecondary.ForeColor = System.Drawing.Color.Snow;
+            this.LblDisplaySecondary.ForeColor = System.Drawing.Color.Silver;
             this.LblDisplaySecondary.Location = new System.Drawing.Point(57, 9);
             this.LblDisplaySecondary.Name = "LblDisplaySecondary";
-            this.LblDisplaySecondary.Size = new System.Drawing.Size(384, 25);
+            this.LblDisplaySecondary.Size = new System.Drawing.Size(385, 25);
             this.LblDisplaySecondary.TabIndex = 0;
             this.LblDisplaySecondary.Text = "0";
             this.LblDisplaySecondary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -388,8 +388,10 @@
             this.Controls.Add(this.Btn8);
             this.Controls.Add(this.Btn7);
             this.Controls.Add(this.LblDisplayPrimary);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "FrmCalculator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
