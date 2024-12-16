@@ -50,7 +50,6 @@
             this.BtnClear = new System.Windows.Forms.Button();
             this.BtnClearEntry = new System.Windows.Forms.Button();
             this.LblDisplaySecondary = new System.Windows.Forms.Label();
-            this.LblOperation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LblDisplayPrimary
@@ -362,25 +361,12 @@
             this.LblDisplaySecondary.Text = "0";
             this.LblDisplaySecondary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // LblOperation
-            // 
-            this.LblOperation.BackColor = System.Drawing.Color.Transparent;
-            this.LblOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.LblOperation.ForeColor = System.Drawing.Color.Snow;
-            this.LblOperation.Location = new System.Drawing.Point(12, 9);
-            this.LblOperation.Name = "LblOperation";
-            this.LblOperation.Size = new System.Drawing.Size(26, 34);
-            this.LblOperation.TabIndex = 0;
-            this.LblOperation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.LblOperation.Click += new System.EventHandler(this.LblOperation_Click);
-            // 
             // FrmCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(455, 621);
-            this.Controls.Add(this.LblOperation);
             this.Controls.Add(this.LblDisplaySecondary);
             this.Controls.Add(this.BtnDivide);
             this.Controls.Add(this.BtnEquals);
@@ -436,7 +422,6 @@
         private System.Windows.Forms.Button BtnClear;
         private System.Windows.Forms.Button BtnClearEntry;
         private System.Windows.Forms.Label LblDisplaySecondary;
-        private System.Windows.Forms.Label LblOperation;
     }
 }
 
